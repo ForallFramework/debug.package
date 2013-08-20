@@ -6,13 +6,13 @@
  */
 namespace forall\debug;
 
-use exceptions\ErrorException;
+use \forall\debug\exceptions\ErrorException;
 use \Exception;
 
 /**
- * The debug class.
+ * The error handling class.
  */
-class Debug
+class ErrorHandler
 {
   
   /**
@@ -29,7 +29,7 @@ class Debug
   public static function handleError($type, $message, $file, $line, $context = null)
   {
     
-    return self::handleException( new ErrorException($message, 0, $type, $file, $line) );
+    return self::handleException(new ErrorException($type, $message, $file, $line, $context));
     
   }
   
@@ -60,6 +60,7 @@ class Debug
       
       //Get the system logger.
       $core = forall('core');
+      $debug = forall('debug');
       $log = $core->getSystemLogger();
       
       //Detect if error handling is explicitly suppressed.
@@ -79,14 +80,23 @@ class Debug
       
       //Get the event dispatcher and system output channel.
       $dispatch = forall('events');
-      $outputter = $core->getSystemOutputter();
+      #TEMP: Disabled - $outputter = $core->getSystemOutputter();
       
       //Generate an error-level log entry; this is an uncaught exception.
       $log->error(sprintf('A(n) %s occurred.', get_class($e)));
       
-      //No exception handlers? Send it straight to an output channel and abort.
-      if(empty($dispatch->listeners('forall:debug:exception', null, true))){
-        $outputter->addOutput($e->getMessage());
+      //No exception handlers? We've got some simple logic of our own to deal with this.
+      if(empty($dispatch->listeners('forall:debug:exception', null, true)))
+      {
+        
+        $msg = ''
+        . $e->getMessage()
+        . "\n\n"
+        . wrap($debug->formatBacktrace($e->getTrace()))->pluck('action')->join("\n");
+        
+        #TEMP: Disabled - $outputter->addOutput($msg);
+        echo $msg;
+        
       }
       
       //Try to let any custom exception handlers handle it.
@@ -95,7 +105,7 @@ class Debug
       }
       
       //There was a new exception.
-      catch($e2)
+      catch(Exception $e2)
       {
         
         //Log this failure.
@@ -105,14 +115,15 @@ class Debug
         ));
         
         //This exception goes straight to an output channel. We can't trust the handlers.
-        $outputter->addOutput($e->getMessage());
+        #TEMP: Disabled - $outputter->addOutput($e->getMessage());
+        echo $e->getMessage();
         
       }
       
     }
     
     //The exception handling systems were not reliable. This is of greater concern.
-    catch($e2)
+    catch(Exception $e2)
     {
       
       //Try to do the very least.
@@ -126,7 +137,7 @@ class Debug
           'A(n) %s occurred while trying to handle %s.', get_class($e2), get_class($e)
         ));
         
-      }catch($e){}
+      }catch(Exception $e){}
       
       //Break.
       exit;
@@ -146,8 +157,14 @@ class Debug
   public static function handleFatal()
   {
     
-    //Get the last error.
+    //Get the last error and back-trace info.
     $e = error_get_last();
+    
+    //If the error occurred within this file, we can no longer trust the error handlers.
+    if($e['file'] === __FILE__){
+      printf('Failed to handle an error because of ERROR-%s: %s.', $e['type'], $e['message']);
+      return;
+    }
     
     //If it's a fatal one, then that's probably the reason for shut down, and we should handle it.
     if($e['type'] == E_ERROR){

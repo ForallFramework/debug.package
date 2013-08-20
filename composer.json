@@ -20,14 +20,16 @@
   "require": {
     "forall/core": "*",
     "forall/wrap": "*",
-    "forall/events": "*",
-    "monolog/monolog": ">=1.5.0"
+    "forall/events": "*"
   },
   
   "autoload": {
     "psr-0": {
       "forall\\debug": "src/"
-    }
+    },
+    "files": [
+      "src/forall/debug/functions.php"
+    ]
   }
   
 }

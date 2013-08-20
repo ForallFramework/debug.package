@@ -1,4 +1,4 @@
-# Debug - Version 0.0.3 Alpha
+# Debug - Version 0.1.0 Beta
 
 ## Description
 

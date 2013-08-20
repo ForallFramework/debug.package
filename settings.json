@@ -1,3 +1,4 @@
 {
+  //Whether this package will register error and exception handlers.
   "handleErrors": true
 }

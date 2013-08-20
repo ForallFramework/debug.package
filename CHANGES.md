@@ -1,3 +1,27 @@
+#### [Version 0.1.0 Beta](https://github.com/ForallFramework/events.package/tree/0.1.0-beta)
+_20-Aug-2013_
+
+* Now uses the forall.loader package for initialization.
+* Added new methods in Debug:
+  - `type()` - Get the type of a variable.
+  - `friendlyErrorCode()` - Convert an error code to a string.
+  - `formatBacktrace()` - Enhances a debug back-trace array.
+* Added new functions in the global scope:
+  - `type()` - Get the type of a variable.
+  - `uctype()` - Get the type of a variable with its first letter in upper case.
+* Added some generic exceptions:
+  - `Exception` - The lowest level of exception.
+  - `ErrorException` - Exception that PHP error can convert to.
+  - `InvalidArgumentException` - Extends Exception.
+* Fixed many small bugs:
+  - Removed hard-dependency to Monolog.
+  - Implemented Singleton methods in Debug.
+  - Removed references to undefined variables.
+  - A fatal error while handling a fatal error no longer results in a loop.
+  - Removed dependency to the yet non-existent package "output".
+  - Fixed invalidly named class.
+  - Fixed `catch`-blocks without explicit exception type.
+
 #### [Version 0.0.3 Alpha](https://github.com/ForallFramework/events.package/tree/0.0.3-alpha)
 _17-Aug-2013_
 
