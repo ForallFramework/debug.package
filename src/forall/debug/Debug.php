@@ -54,18 +54,18 @@ class Debug extends AbstractCore
   {
     
     return array_search($code, [
-      'ERROR'             => E_ERROR
-      'WARNING'           => E_WARNING
-      'PARSING ERROR'     => E_PARSE
-      'NOTICE'            => E_NOTICE
-      'CORE ERROR'        => E_CORE_ERROR
-      'CORE WARNING'      => E_CORE_WARNING
-      'COMPILE ERROR'     => E_COMPILE_ERROR
-      'COMPILE WARNING'   => E_COMPILE_WARNING
-      'USER ERROR'        => E_USER_ERROR
-      'USER WARNING'      => E_USER_WARNING
-      'USER NOTICE'       => E_USER_NOTICE
-      'STRICT NOTICE'     => E_STRICT
+      'ERROR'             => E_ERROR,
+      'WARNING'           => E_WARNING,
+      'PARSING ERROR'     => E_PARSE,
+      'NOTICE'            => E_NOTICE,
+      'CORE ERROR'        => E_CORE_ERROR,
+      'CORE WARNING'      => E_CORE_WARNING,
+      'COMPILE ERROR'     => E_COMPILE_ERROR,
+      'COMPILE WARNING'   => E_COMPILE_WARNING,
+      'USER ERROR'        => E_USER_ERROR,
+      'USER WARNING'      => E_USER_WARNING,
+      'USER NOTICE'       => E_USER_NOTICE,
+      'STRICT NOTICE'     => E_STRICT,
       'RECOVERABLE ERROR' => E_RECOVERABLE_ERROR
     ]);
     

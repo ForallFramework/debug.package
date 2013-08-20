@@ -1,5 +1,9 @@
-#### [Version 0.1.0 Beta](https://github.com/ForallFramework/events.package/tree/0.1.0-beta)
+#### [Version 0.1.1 Beta](https://github.com/ForallFramework/events.package/tree/0.1.1-beta)
 _20-Aug-2013_
+
+* Fixed: Missing comma's in friendlyErrorCode map array.
+
+#### [Version 0.1.0 Beta](https://github.com/ForallFramework/events.package/tree/0.1.0-beta)
 
 * Now uses the forall.loader package for initialization.
 * Added new methods in Debug:
