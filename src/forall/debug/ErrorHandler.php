@@ -61,7 +61,7 @@ class ErrorHandler
       //Get the system logger.
       $core = forall('core.core');
       $debug = forall('debug.debugger');
-      $log = $core->getSystemLogger();
+      $log = forall('log.logger');
       
       //Detect if this is a suppressed ErrorException.
       if($e instanceof ErrorException && !(error_reporting() & $e->getCode()))
@@ -133,7 +133,7 @@ class ErrorHandler
         echo $e2->getMessage();
         
         //Add a log entry.
-        $core->getSystemLogger()->critical(sprintf(
+        forall('log.logger')->critical(sprintf(
           'A(n) %s occurred while trying to handle %s.', get_class($e2), get_class($e)
         ));
         

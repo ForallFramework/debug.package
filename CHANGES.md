@@ -1,3 +1,8 @@
+#### [Version 0.1.3 Beta](https://github.com/ForallFramework/events.package/tree/0.1.3-beta)
+
+* Fixed: Some old code made it past my almost all-seeing eye. The logger instance is now
+  properly acquired and the dependency on the log package has been noted.
+
 #### [Version 0.1.2 Beta](https://github.com/ForallFramework/events.package/tree/0.1.2-beta)
 
 * Removed the old main.php, and created an init.php which works with the new core package.
