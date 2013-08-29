@@ -6,13 +6,12 @@
  */
 namespace forall\debug;
 
-use \forall\core\core\AbstractCore;
 use \forall\core\singleton\SingletonTraits;
 
 /**
  * The debug class.
  */
-class Debug extends AbstractCore
+class Debug
 {
   
   use SingletonTraits;
@@ -20,15 +19,14 @@ class Debug extends AbstractCore
   /**
    * Sets up error handlers and configuration for proper debugging.
    */
-  public function init()
+  public function setup()
   {
     
-    //Set our descriptor.
-    $d = forall('core')->createPackageDescriptor('debug');
-    $this->setDescriptor($d);
+    //Set our settings.
+    $settings = forall('core.core')->getPackageDescriptorByName('debug');
     
     //If error handling is disabled, we've got nothing else to do here.
-    if($d->settings['handleErrors'] === false){
+    if($settings->handleErrors === false){
       return;
     }
     

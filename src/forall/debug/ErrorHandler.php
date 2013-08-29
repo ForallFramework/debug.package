@@ -59,12 +59,12 @@ class ErrorHandler
     {
       
       //Get the system logger.
-      $core = forall('core');
-      $debug = forall('debug');
+      $core = forall('core.core');
+      $debug = forall('debug.debugger');
       $log = $core->getSystemLogger();
       
-      //Detect if error handling is explicitly suppressed.
-      if(error_reporting() == 0)
+      //Detect if this is a suppressed ErrorException.
+      if($e instanceof ErrorException && !(error_reporting() & $e->getCode()))
       {
         
         //Generate a warning-level log entry. Behaviour might be intended.
@@ -79,7 +79,7 @@ class ErrorHandler
       }
       
       //Get the event dispatcher and system output channel.
-      $dispatch = forall('events');
+      $dispatch = forall('events.dispatcher');
       #TEMP: Disabled - $outputter = $core->getSystemOutputter();
       
       //Generate an error-level log entry; this is an uncaught exception.

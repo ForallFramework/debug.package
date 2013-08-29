@@ -8,7 +8,7 @@ namespace forall\debug
 {
   
   /**
-   * An alias for `forall('debug')->type($var)`.
+   * An alias for `forall('debug.debugger')->type($var)`.
    * @param mixed $var
    * @return string
    * @see Debug::type() for documentation.
@@ -16,12 +16,12 @@ namespace forall\debug
   function type($var)
   {
     
-    return Debug::getInstance()->type($var);
+    return forall('debug.debugger')->type($var);
     
   }
   
   /**
-   * Calls `forall('debug')->type($var)` and converts the first letter to upper case.
+   * Calls `forall('debug.debugger')->type($var)` and converts the first letter to upper case.
    * @param mixed $var
    * @return string
    * @see Debug::type() for documentation.
@@ -29,7 +29,7 @@ namespace forall\debug
   function uctype($var)
   {
     
-    return ucfirst(Debug::getInstance()->type($var));
+    return ucfirst(forall('debug.debugger')->type($var));
     
   }
   

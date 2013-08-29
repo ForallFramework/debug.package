@@ -33,7 +33,7 @@ class ErrorException extends NativeErrorException
   {
     
     //Get the type as string.
-    $type = forall('debug')->friendlyErrorCode($code);
+    $type = forall('debug.debugger')->friendlyErrorCode($code);
     $type = ($type ? $type : 'ERROR');
     
     //Create an extended message.

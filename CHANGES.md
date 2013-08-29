@@ -1,3 +1,9 @@
+#### [Version 0.1.2 Beta](https://github.com/ForallFramework/events.package/tree/0.1.2-beta)
+
+* Removed the old main.php, and created an init.php which works with the new core package.
+* Changed some code to work with the new core package API.
+* Made it so specifically suppressed error types now work, instead of just boolean.
+
 #### [Version 0.1.1 Beta](https://github.com/ForallFramework/events.package/tree/0.1.1-beta)
 _20-Aug-2013_
 
